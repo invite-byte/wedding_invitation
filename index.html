@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aravind ❤️ Vidhya | Wedding Invitation</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#7b2d3a;
+      --secondary:#b56b76;
+      --bg:#f8f5f3;
+    }
+    html{scroll-behavior:smooth;}
+    body{margin:0;font-family:"Montserrat",sans-serif;background:var(--bg);overflow-x:hidden;}
+
+    .hearts{position:fixed;inset:0;pointer-events:none;z-index:9999;overflow:hidden;}
+    .heart{position:absolute;bottom:-20px;font-size:18px;opacity:0.75;animation:floatUp linear forwards;}
+    @keyframes floatUp{from{transform:translateY(0) scale(0.8);opacity:0.8;}to{transform:translateY(-110vh) scale(1.5);opacity:0;}}
+
+    .spark{position:fixed;width:8px;height:8px;border-radius:50%;background:gold;z-index:99999;pointer-events:none;animation:spark 1s ease-out forwards;}
+    @keyframes spark{0%{transform:scale(0.8);opacity:1;}100%{transform:scale(8);opacity:0;}}
+
+    .top-actions{position:fixed;right:14px;top:14px;display:flex;flex-direction:column;gap:10px;z-index:999999;}
+    .action-btn{border:none;padding:10px 14px;border-radius:14px;font-weight:800;box-shadow:0 12px 25px rgba(0,0,0,0.18);background:var(--primary);color:white;transition:0.25s;}
+    .action-btn:hover{transform:translateY(-2px);background:#5e1f2b;}
+
+    .cover{position:fixed;inset:0;background:linear-gradient(135deg,#fff,#fff5f7);display:flex;justify-content:center;align-items:center;z-index:999999;transition:1s ease;}
+    .cover.hide{transform:translateY(-120%);opacity:0;pointer-events:none;}
+    .cover-card{width:min(920px,92vw);padding:55px 18px 90px;border-radius:26px;background:white;text-align:center;box-shadow:0 18px 60px rgba(0,0,0,0.18);position:relative;overflow:hidden;}
+    .cover-title{font-family:"Dancing Script",cursive;letter-spacing:0.8px;font-size:70px;color:var(--primary);margin:0;}
+    .cover-sub{margin-top:10px;color:#555;font-size:20px;font-style:italic;font-weight:bold;}
+    .hint{margin-top:18px;font-weight:900;color:var(--primary);font-size:15px;opacity:0.85;}
+
+    .rope-wrap{position:absolute;left:50%;top:0;transform:translateX(-50%);width:240px;height:100%;display:flex;justify-content:center;align-items:flex-start;user-select:none;touch-action:none;}
+    .rope{width:4px;height:220px;background:linear-gradient(#caa16a,#8a5a2a);border-radius:99px;position:relative;transition:0.05s linear;}
+    .rope::after{content:"";position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);width:18px;height:18px;border-radius:50%;background:#d9b17b;box-shadow:0 8px 15px rgba(0,0,0,0.15);}
+    .pull-ring{margin-top:220px;width:62px;height:62px;border-radius:20px;background:var(--primary);display:flex;justify-content:center;align-items:center;color:white;font-size:28px;font-weight:900;box-shadow:0 14px 30px rgba(0,0,0,0.25);transition:0.05s linear;cursor:grab;}
+    .pull-ring:active{cursor:grabbing;}
+    .progress-text{margin-top:10px;font-weight:700;color:#555;font-size:13px;}
+
+    .section{padding:85px 12px;}
+    .invite-box{max-width:1100px;margin:auto;background:white;border-radius:22px;padding:35px 18px;box-shadow:0 15px 55px rgba(0,0,0,0.14);border:1px solid rgba(0,0,0,0.06);overflow:hidden;position:relative;}
+
+    /* HEARTS SECTION */
+    .hearts-photo-wrap{width:100%;background:#ffffff;border-radius:18px;padding:10px 10px 20px;position:relative;overflow:hidden;}
+    .hearts-svg-area{width:100%;display:block;}
+    .hearts-names-row{display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;margin-top:4px;}
+    .hn-box{text-align:center;}
+    .hn-name{font-family:'Cinzel',serif;font-size:17px;color:#cc0020;letter-spacing:3px;display:block;font-weight:600;}
+    .hn-role{font-family:'Cormorant Garamond',serif;font-size:11px;font-style:italic;color:rgba(180,0,30,0.5);letter-spacing:2px;display:block;margin-top:3px;}
+    .hn-amp{font-family:'Cormorant Garamond',serif;font-size:50px;font-style:italic;color:#cc0020;line-height:1;}
+
+    /* COUNTDOWN */
+    .countdown{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0 22px;}
+    .time-box{min-width:95px;padding:10px 14px;border-radius:16px;background:linear-gradient(180deg,#fff,#fff7f8);border:1px solid rgba(0,0,0,0.06);box-shadow:0 10px 20px rgba(0,0,0,0.06);text-align:center;}
+    .time-box h2{margin:0;font-weight:900;color:var(--primary);font-size:28px;}
+    .time-box p{margin:0;font-size:12px;color:#555;font-weight:700;letter-spacing:0.4px;}
+
+    /* EVENT CARDS */
+    .event-card{border-radius:16px;padding:18px;background:linear-gradient(180deg,#fff,#fff7f8);border:1px solid rgba(0,0,0,0.06);box-shadow:0 10px 25px rgba(0,0,0,0.07);height:100%;}
+    .event-title{font-weight:bold;color:var(--primary);font-size:18px;margin-bottom:8px;}
+    .event-text{color:#444;font-size:14px;margin-bottom:6px;}
+    .wedding-premium{background:linear-gradient(180deg,#ffffff,#fff6f7);border:1px solid rgba(123,45,58,0.15);}
+    .event-title-premium{font-family:"Dancing Script",cursive;font-size:34px;font-weight:700;color:var(--primary);text-align:center;margin-bottom:14px;}
+    .event-line{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;font-family:"Montserrat",sans-serif;font-size:15px;line-height:1.7;}
+    .event-label{min-width:90px;font-weight:800;color:var(--primary);}
+    .event-value{font-weight:600;color:#444;}
+    .premium-divider{width:85%;height:2px;margin:18px auto;border-radius:99px;background:linear-gradient(90deg,transparent,var(--secondary),transparent);opacity:0.7;}
+    .message-text{font-family:"Montserrat",sans-serif;font-size:14.5px;line-height:1.9;color:#444;text-align:center;font-weight:500;max-width:750px;margin:auto;}
+
+    /* ACTION CARDS */
+    .action-cards-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px;}
+    .action-card{display:flex;align-items:center;gap:12px;background:white;border-radius:18px;padding:14px 16px;border:1px solid rgba(0,0,0,0.06);box-shadow:0 6px 20px rgba(0,0,0,0.07);text-decoration:none;cursor:pointer;transition:all 0.22s ease;position:relative;overflow:hidden;width:100%;text-align:left;}
+    .action-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:18px 18px 0 0;}
+    .ac-map::before{background:#e8001a;}
+    .ac-wa::before{background:#25D366;}
+    .ac-cal::before{background:#ff9800;}
+    .ac-dl::before{background:#5c6bc0;}
+    .action-card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,0.12);text-decoration:none;}
+    .ac-icon-wrap{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+    .ac-content{flex:1;min-width:0;}
+    .ac-title{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800;color:#222;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .ac-sub{font-family:'Montserrat',sans-serif;font-size:10px;font-weight:500;color:#999;margin-top:2px;}
+    .ac-arrow{font-size:22px;font-weight:300;color:#ccc;flex-shrink:0;line-height:1;}
+
+    /* DIVIDER SUBTITLE */
+    .divider-subtitle-wrap{max-width:680px;margin:0 auto 28px;text-align:center;}
+    .div-line-row{display:flex;align-items:center;gap:12px;}
+    .div-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,#b56b76);}
+    .div-line.right{background:linear-gradient(90deg,#b56b76,transparent);}
+    .div-orn{font-size:18px;color:#b56b76;line-height:1;opacity:0.8;}
+    .div-text{font-family:'Cormorant Garamond','Dancing Script',Georgia,serif;font-size:17px;font-style:italic;color:#555;letter-spacing:0.5px;line-height:1.85;margin:10px 0;}
+
+    .love-title{font-family:"Dancing Script",cursive;font-size:58px;color:var(--primary);text-align:center;}
+
+    @media(max-width:768px){
+      .cover-title{font-size:52px;}
+      .time-box{min-width:78px;}
+      .rope-wrap{width:180px;}
+      .event-title-premium{font-size:30px;}
+      .event-line{font-size:14px;}
+      .event-label{min-width:80px;}
+      .hn-name{font-size:14px;}
+      .hn-amp{font-size:38px;}
+    }
+    @media(max-width:480px){
+      .action-cards-grid{grid-template-columns:1fr;}
+      .ac-title{font-size:14px;}
+      .ac-sub{font-size:11px;}
+      .ac-icon-wrap{width:48px;height:48px;font-size:24px;}
+    }
+  </style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="top-actions">
+  <button class="action-btn" onclick="toggleMusic()" id="musicBtn">🎵 Music ON</button>
+  <button class="action-btn" onclick="scrollToSection('invitation')">📜 Details</button>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="aasai.mp3" type="audio/mpeg">
+</audio>
+
+<!-- COVER PAGE -->
+<section class="cover" id="cover">
+  <div class="cover-card">
+    <h1 class="cover-title">Wedding Invitation</h1>
+    <p class="cover-sub">Aravind ❤️ Vidhya</p>
+    <p class="hint">⬇ Drag the rope down to open</p>
+    <div class="progress-text" id="progressText">Pull…</div>
+    <div class="rope-wrap" id="ropeWrap">
+      <div class="rope" id="rope"></div>
+      <div class="pull-ring" id="ring">💍</div>
+    </div>
+  </div>
+</section>
+
+<!-- INVITATION PAGE -->
+<section class="section" id="invitation">
+  <div class="container">
+    <div class="invite-box">
+
+      <div class="divider-subtitle-wrap">
+        <div class="div-line-row"><div class="div-line"></div><div class="div-orn">✿</div><div class="div-line right"></div></div>
+        <p class="div-text">Together with our families, we request the pleasure of your company</p>
+        <div class="div-line-row"><div class="div-line"></div><div class="div-orn">✿</div><div class="div-line right"></div></div>
+      </div>
+
+      <!-- 3D HEARTS -->
+      <div class="hearts-photo-wrap">
+        <div style="position:relative;display:inline-block;width:100%;">
+          <svg class="hearts-svg-area" viewBox="0 0 520 310" xmlns="http://www.w3.org/2000/svg"
+               style="shape-rendering:geometricPrecision;">
+            <defs>
+              <linearGradient id="lFront" x1="20%" y1="0%" x2="80%" y2="100%">
+                <stop offset="0%" stop-color="#ff3355"/>
+                <stop offset="35%" stop-color="#e0001e"/>
+                <stop offset="100%" stop-color="#8a0010"/>
+              </linearGradient>
+              <linearGradient id="lSide" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6a0010"/>
+                <stop offset="100%" stop-color="#380008"/>
+              </linearGradient>
+              <linearGradient id="lShine" x1="5%" y1="5%" x2="55%" y2="65%">
+                <stop offset="0%" stop-color="rgba(255,210,215,0.7)"/>
+                <stop offset="55%" stop-color="rgba(255,100,120,0.12)"/>
+                <stop offset="100%" stop-color="rgba(255,50,80,0)"/>
+              </linearGradient>
+              <linearGradient id="rFront" x1="20%" y1="0%" x2="80%" y2="100%">
+                <stop offset="0%" stop-color="#ff4466"/>
+                <stop offset="35%" stop-color="#cc001c"/>
+                <stop offset="100%" stop-color="#770010"/>
+              </linearGradient>
+              <linearGradient id="rSide" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#550010"/>
+                <stop offset="100%" stop-color="#2a0008"/>
+              </linearGradient>
+              <linearGradient id="rShine" x1="5%" y1="5%" x2="55%" y2="65%">
+                <stop offset="0%" stop-color="rgba(255,210,220,0.65)"/>
+                <stop offset="100%" stop-color="rgba(255,80,100,0)"/>
+              </linearGradient>
+              <filter id="ds1" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="5" dy="10" stdDeviation="10" flood-color="rgba(160,0,20,0.4)"/>
+              </filter>
+              <filter id="ds2" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="4" dy="7" stdDeviation="7" flood-color="rgba(130,0,15,0.38)"/>
+              </filter>
+
+              <clipPath id="clipLPhoto">
+                <path d="M180 220 C180 220 100 170 100 110 C100 72 122 54 146 54 C160 54 180 66 180 66 C180 66 200 54 214 54 C238 54 260 72 260 110 C260 170 180 220 180 220Z"/>
+              </clipPath>
+
+              <clipPath id="clipRPhoto">
+                <path d="M340 235 C340 235 262 183 262 132 C262 95 284 77 306 77 C319 77 340 90 340 90 C340 90 361 77 374 77 C396 77 418 95 418 132 C418 183 340 235 340 235Z"/>
+              </clipPath>
+            </defs>
+
+            <!-- LEFT BIG HEART -->
+            <path d="M180 248 C180 248 72 182 72 108 C72 60 102 34 136 34 C156 34 180 52 180 52 C180 52 204 34 224 34 C258 34 288 60 288 108 C288 182 180 248 180 248Z"
+              transform="translate(9,11)" fill="url(#lSide)" opacity="0.88"/>
+            <path d="M180 248 C180 248 72 182 72 108 C72 60 102 34 136 34 C156 34 180 52 180 52 C180 52 204 34 224 34 C258 34 288 60 288 108 C288 182 180 248 180 248Z"
+              fill="url(#lFront)" filter="url(#ds1)"/>
+            <path d="M180 248 C180 248 72 182 72 108 C72 60 102 34 136 34 C156 34 180 52 180 52 C180 52 204 34 224 34 C258 34 288 60 288 108 C288 182 180 248 180 248Z"
+              fill="url(#lShine)"/>
+            <path d="M180 220 C180 220 100 170 100 110 C100 72 122 54 146 54 C160 54 180 66 180 66 C180 66 200 54 214 54 C238 54 260 72 260 110 C260 170 180 220 180 220Z"
+              fill="white"/>
+            <image href="Capture.PNG"
+              x="100" y="54" width="160" height="166"
+              preserveAspectRatio="xMidYMid slice"
+              clip-path="url(#clipLPhoto)"
+              style="image-rendering:high-quality;"/>
+            <path d="M180 220 C180 220 100 170 100 110 C100 72 122 54 146 54 C160 54 180 66 180 66 C180 66 200 54 214 54 C238 54 260 72 260 110 C260 170 180 220 180 220Z"
+              fill="none" stroke="#cc0018" stroke-width="2.5"/>
+
+            <!-- RIGHT HEART -->
+            <path d="M340 260 C340 260 246 202 246 136 C246 90 274 66 302 66 C318 66 340 82 340 82 C340 82 362 66 378 66 C406 66 434 90 434 136 C434 202 340 260 340 260Z"
+              transform="translate(8,10)" fill="url(#rSide)" opacity="0.88"/>
+            <path d="M340 260 C340 260 246 202 246 136 C246 90 274 66 302 66 C318 66 340 82 340 82 C340 82 362 66 378 66 C406 66 434 90 434 136 C434 202 340 260 340 260Z"
+              fill="url(#rFront)" filter="url(#ds1)"/>
+            <path d="M340 260 C340 260 246 202 246 136 C246 90 274 66 302 66 C318 66 340 82 340 82 C340 82 362 66 378 66 C406 66 434 90 434 136 C434 202 340 260 340 260Z"
+              fill="url(#rShine)"/>
+
+            <!-- White fill behind photo -->
+            <path d="M340 235 C340 235 262 183 262 132 C262 95 284 77 306 77 C319 77 340 90 340 90 C340 90 361 77 374 77 C396 77 418 95 418 132 C418 183 340 235 340 235Z"
+              fill="white"/>
+
+            <!-- ✅ FIX: foreignObject with CSS background-image for crisp rendering -->
+            <!-- <foreignObject x="262" y="77" width="156" height="158" clip-path="url(#clipRPhoto)">
+              <div xmlns="http://www.w3.org/1999/xhtml"
+                   style="width:156px;height:158px;
+                          background:url('3.jpeg') center center / cover no-repeat;
+                          image-rendering:high-quality;
+                          -webkit-image-rendering:high-quality;"
+              ></div>
+            </foreignObject> -->
+            <foreignObject x="262" y="77" width="156" height="158" clip-path="url(#clipRPhoto)">  
+               <div xmlns="http://www.w3.org/1999/xhtml"
+       style="width:156px; height:158px;
+              background: url('fi.jpeg') center center / cover no-repeat;
+              image-rendering: -webkit-optimize-contrast;
+              image-rendering: crisp-edges;
+              transform: translateZ(0);
+              will-change: transform;"
+  ></div>
+            </foreignObject>
+  
+
+ 
+
+
+            <!-- Heart border on top of photo -->
+            <path d="M340 235 C340 235 262 183 262 132 C262 95 284 77 306 77 C319 77 340 90 340 90 C340 90 361 77 374 77 C396 77 418 95 418 132 C418 183 340 235 340 235Z"
+              fill="none" stroke="#cc0018" stroke-width="2.5"/>
+
+            <!-- Mini hearts -->
+            <text x="22"  y="70"  font-size="20" fill="#e8001a" opacity="0.55">❤</text>
+            <text x="468" y="52"  font-size="14" fill="#e8001a" opacity="0.5">❤</text>
+            <text x="42"  y="255" font-size="13" fill="#e8001a" opacity="0.4">❤</text>
+            <text x="455" y="248" font-size="16" fill="#e8001a" opacity="0.45">❤</text>
+            <text x="10"  y="158" font-size="10" fill="#e8001a" opacity="0.3">❤</text>
+            <text x="484" y="152" font-size="11" fill="#e8001a" opacity="0.3">❤</text>
+            <text x="110" y="14"  font-size="11" fill="#e8001a" opacity="0.3">❤</text>
+            <text x="390" y="16"  font-size="13" fill="#e8001a" opacity="0.35">❤</text>
+            <text x="248" y="10"  font-size="9"  fill="#e8001a" opacity="0.28">❤</text>
+            <text x="490" y="98"  font-size="9"  fill="#e8001a" opacity="0.28">❤</text>
+            <text x="8"   y="108" font-size="8"  fill="#e8001a" opacity="0.25">❤</text>
+            <!-- Splash dots -->
+            <circle cx="36"  cy="98"  r="3.5" fill="#ff2244" opacity="0.5"/>
+            <circle cx="50"  cy="54"  r="2.5" fill="#ff2244" opacity="0.4"/>
+            <circle cx="474" cy="86"  r="3"   fill="#ff2244" opacity="0.45"/>
+            <circle cx="460" cy="44"  r="2"   fill="#ff2244" opacity="0.35"/>
+            <circle cx="488" cy="192" r="2.5" fill="#ff2244" opacity="0.38"/>
+            <circle cx="18"  cy="192" r="2"   fill="#ff2244" opacity="0.32"/>
+            <circle cx="200" cy="8"   r="2"   fill="#ff2244" opacity="0.28"/>
+            <circle cx="310" cy="6"   r="1.5" fill="#ff2244" opacity="0.25"/>
+          </svg>
+        </div>
+
+        <div class="hearts-names-row">
+          <div class="hn-box">
+            <span class="hn-name">ARAVIND</span>
+            <span class="hn-role">The Groom</span>
+          </div>
+          <div class="hn-amp">&</div>
+          <div class="hn-box">
+            <span class="hn-name">VIDHYA</span>
+            <span class="hn-role">The Bride</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Countdown -->
+      <div class="countdown">
+        <div class="time-box"><h2 id="days">00</h2><p>DAYS</p></div>
+        <div class="time-box"><h2 id="hours">00</h2><p>HOURS</p></div>
+        <div class="time-box"><h2 id="minutes">00</h2><p>MINUTES</p></div>
+        <div class="time-box"><h2 id="seconds">00</h2><p>SECONDS</p></div>
+      </div>
+
+      <div class="row g-3 mt-2">
+
+        <div class="col-md-6">
+          <div class="event-card wedding-premium">
+            <div class="event-title-premium">💒 Wedding Ceremony</div>
+            <div class="event-line">
+              <span class="event-label">📅 Date:</span>
+              <span class="event-value">Thursday, 23rd April 2026</span>
+            </div>
+            <div class="event-line">
+              <span class="event-label">⏰ Time:</span>
+              <span class="event-value">7:35 AM – 9:00 AM</span>
+            </div>
+            <div class="event-line">
+              <span class="event-label">📍 Venue:</span>
+              <span class="event-value">ValliMayil Wedding Hall,<br/>Sankaran Kovil, Geethalaya Theatre Road</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="event-card wedding-premium">
+            <div class="event-title-premium">🙏 Invitation Message</div>
+            <p class="message-text">
+              A time to celebrate, a day to remember, a moment to cherish.
+              Our life is getting tuned together in a beautiful & melodious wedlock.
+            </p>
+            <div class="premium-divider"></div>
+            <p class="message-text mb-0">
+              Kindly do come and bless us with your gracious presence.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="event-card text-center">
+            <div class="event-title">🙏 Your Presence is Our Blessing</div>
+            <p class="event-text mb-0">We look forward to celebrating with you and your family.</p>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="action-cards-grid">
+            <a class="action-card ac-map" target="_blank" href="https://maps.app.goo.gl/fm6KMG4VMz38xv1GA">
+              <div class="ac-icon-wrap" style="background:#ffe8ec;">📍</div>
+              <div class="ac-content">
+                <div class="ac-title">View Location</div>
+                <div class="ac-sub">Open in Maps</div>
+              </div>
+              <div class="ac-arrow">›</div>
+            </a>
+            <a class="action-card ac-wa" target="_blank"
+               href="https://wa.me/?text=You%20are%20warmly%20invited%20to%20Aravind%20%26%20Vidhya%20Wedding%20%F0%9F%92%8D%0A%0ADate%3A%2023%20April%202026%20(Thursday)%0ATime%3A%207%3A35%20AM%20-%209%3A00%20AM%0AVenue%3A%20Valli%20Mayil%20Thirumana%20Mandapam%2C%20Sangaran%20Kovil%0A%0ALocation%3A%20https%3A%2F%2Fmaps.app.goo.gl%2Ffm6KMG4VMz38xv1GA">
+              <div class="ac-icon-wrap" style="background:#e0f8ea;">💬</div>
+              <div class="ac-content">
+                <div class="ac-title">WhatsApp Invite</div>
+                <div class="ac-sub">Share with friends</div>
+              </div>
+              <div class="ac-arrow">›</div>
+            </a>
+            <a class="action-card ac-cal" target="_blank" id="googleCalBtn">
+              <div class="ac-icon-wrap" style="background:#fff0e0;">📅</div>
+              <div class="ac-content">
+                <div class="ac-title">Add to Calendar</div>
+                <div class="ac-sub">Google Calendar</div>
+              </div>
+              <div class="ac-arrow">›</div>
+            </a>
+            <button class="action-card ac-dl" onclick="downloadICS()">
+              <div class="ac-icon-wrap" style="background:#eceeff;">⬇</div>
+              <div class="ac-content">
+                <div class="ac-title">Download .ics</div>
+                <div class="ac-sub">Save to device</div>
+              </div>
+              <div class="ac-arrow">›</div>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="love">
+  <div class="container">
+    <h2 class="love-title">With Love ❤️</h2>
+    <p class="text-center mt-2" style="max-width:850px;margin:auto;color:#555;line-height:1.7;">
+      Relatives and Friends — Your blessings and presence will make our day truly memorable.
+      Please join us and celebrate this beautiful beginning of our journey together.
+    </p>
+  </div>
+</section>
+
+<script>
+  function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:"smooth"});}
+
+  const cover=document.getElementById("cover");
+  const rope=document.getElementById("rope");
+  const ring=document.getElementById("ring");
+  const progressText=document.getElementById("progressText");
+  let startY=0,dragging=false;
+  const baseHeight=220,maxPull=220,openAt=180;
+
+  function setPull(px){
+    const pull=Math.max(0,Math.min(px,maxPull));
+    rope.style.height=(baseHeight+pull)+"px";
+    ring.style.transform=`translateY(${pull}px) rotate(${pull/18}deg)`;
+    const pct=Math.floor((pull/openAt)*100);
+    progressText.innerText=pct>=100?"Release to open 💌":`Pull… ${pct}%`;
+  }
+  function resetPull(){rope.style.height=baseHeight+"px";ring.style.transform="translateY(0px) rotate(0deg)";progressText.innerText="Pull…";}
+  function openInvitation(){
+    cover.classList.add("hide");
+    fireworksBurst();
+    setTimeout(()=>{bgMusic.play().then(()=>{musicPlaying=true;musicBtn.innerText="🔇 Music OFF";}).catch(()=>{musicPlaying=false;musicBtn.innerText="🎵 Music ON";});},600);
+    setTimeout(()=>scrollToSection("invitation"),750);
+  }
+  ring.addEventListener("pointerdown",(e)=>{dragging=true;startY=e.clientY;ring.setPointerCapture(e.pointerId);});
+  ring.addEventListener("pointermove",(e)=>{if(!dragging)return;setPull(e.clientY-startY);});
+  ring.addEventListener("pointerup",(e)=>{dragging=false;if(e.clientY-startY>=openAt)openInvitation();else resetPull();});
+  ring.addEventListener("pointercancel",()=>{dragging=false;resetPull();});
+
+  const weddingDate=new Date("2026-04-23T07:35:00").getTime();
+  function updateCountdown(){
+    const diff=weddingDate-new Date().getTime();
+    if(diff<=0){["days","hours","minutes","seconds"].forEach(id=>document.getElementById(id).innerText="00");return;}
+    document.getElementById("days").innerText=String(Math.floor(diff/(1000*60*60*24))).padStart(2,"0");
+    document.getElementById("hours").innerText=String(Math.floor((diff%(1000*60*60*24))/(1000*60*60))).padStart(2,"0");
+    document.getElementById("minutes").innerText=String(Math.floor((diff%(1000*60*60))/(1000*60))).padStart(2,"0");
+    document.getElementById("seconds").innerText=String(Math.floor((diff%(1000*60))/1000)).padStart(2,"0");
+  }
+  setInterval(updateCountdown,1000);updateCountdown();
+
+  let musicPlaying=false;
+  const bgMusic=document.getElementById("bgMusic");
+  const musicBtn=document.getElementById("musicBtn");
+  function toggleMusic(){
+    if(!musicPlaying){bgMusic.play();musicPlaying=true;musicBtn.innerText="🔇 Music OFF";}
+    else{bgMusic.pause();musicPlaying=false;musicBtn.innerText="🎵 Music ON";}
+  }
+
+  const heartsBox=document.getElementById("hearts");
+  const heartIcons=["❤️","💖","💘","💗","💞","💕"];
+  function createHeart(){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerText=heartIcons[Math.floor(Math.random()*heartIcons.length)];
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(4+Math.random()*4)+"s";
+    h.style.fontSize=(16+Math.random()*18)+"px";
+    heartsBox.appendChild(h);
+    setTimeout(()=>h.remove(),8000);
+  }
+  setInterval(createHeart,450);
+
+  function fireworksBurst(){
+    for(let i=0;i<18;i++){
+      const s=document.createElement("div");s.className="spark";
+      s.style.left=(30+Math.random()*40)+"vw";
+      s.style.top=(20+Math.random()*30)+"vh";
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(),1200);
+    }
+  }
+
+  const calTitle=encodeURIComponent("Wedding Ceremony - Aravind & Vidhya");
+  const calLocation=encodeURIComponent("ValliMayil Wedding Hall, Sankaran Kovil");
+  const calDetails=encodeURIComponent("Join us for Aravind & Vidhya Wedding 💍✨");
+  const startUTC="20260423T020500Z",endUTC="20260423T033000Z";
+  document.getElementById("googleCalBtn").href=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${calTitle}&dates=${startUTC}/${endUTC}&details=${calDetails}&location=${calLocation}`;
+
+  function downloadICS(){
+    const ics=`BEGIN:VCALENDAR\nVERSION:2.0\nCALSCALE:GREGORIAN\nBEGIN:VEVENT\nSUMMARY:Wedding Ceremony - Aravind & Vidhya\nDTSTART:${startUTC}\nDTEND:${endUTC}\nLOCATION:ValliMayil Wedding Hall, Sankaran Kovil\nDESCRIPTION:Join us for the wedding celebration 💍✨\nSTATUS:CONFIRMED\nSEQUENCE:0\nEND:VEVENT\nEND:VCALENDAR`;
+    const link=document.createElement("a");
+    link.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar;charset=utf-8"}));
+    link.download="Aravind-Vidhya-Wedding.ics";link.click();
+  }
+</script>
+</body>
+</html>
